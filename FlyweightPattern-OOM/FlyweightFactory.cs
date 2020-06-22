@@ -11,6 +11,8 @@ namespace FlyweightPattern_OOM
         private Dictionary<string, Image> images = new Dictionary<string, Image>();
         public Image GetImage(string key)
         {
+            if (key == null)
+                return null;
             if (images.ContainsKey(key))
             {
                 return images[key];
