@@ -13,9 +13,9 @@ namespace FlyweightPattern_OOM
 {
     class FlyweightFactory
     {
-        Dictionary<string, Image> images = new Dictionary<string, Image>();
+        public Dictionary<string, Image> images = new Dictionary<string, Image>();
         Image imgfile;
-        string iName;
+        string directoryName;
         int flag=0;
         public Image getImage2(PictureBox picture)
         {
@@ -25,25 +25,32 @@ namespace FlyweightPattern_OOM
             if (f.ShowDialog() == DialogResult.OK)
             {
                 value = Image.FromFile(f.FileName);
-                iName = f.FileName;
+                directoryName = Path.GetFullPath(f.FileName);
+                //console writeline napravljen radi testa, da vidim da li je path tocan
+                Console.WriteLine("path to that current picture is: {0}", directoryName);
                 for (int i = 0; i < images.Count; i++)
                 {
-                    if (images.ContainsKey(iName))
+                    if (images.ContainsKey(directoryName))
                     {
                         flag = 1;
-                        value = images[iName];
+                        value = images[directoryName];
                         return value;
                     }
                 }
                 if (flag == 0)
                 {
                     //value = imgfile;
-                    images.Add(iName, value);
+                    images.Add(directoryName, value);
+                    foreach(var item in images)
+                    {
+                        Console.WriteLine(item.Key);
+                    }
                     return value;
                 }
             }
             //ovaj return se nece nikada izvrsiti
-            return value;  
+            return value;
+
         }
     }
 }

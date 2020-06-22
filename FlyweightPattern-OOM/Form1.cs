@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace FlyweightPattern_OOM
 {
     public partial class Form1 : Form
@@ -119,22 +120,53 @@ namespace FlyweightPattern_OOM
             pictureBox6.Image = null;
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
-            //memory open button
-            if (Directory.Exists(@"D:\ImagesOOM"))
+            //refresh button
+            foreach (var item in image.images)
             {
-                ProcessStartInfo startInfo = new ProcessStartInfo
+                if (!File.Exists(item.Key))
                 {
-                    Arguments = @"D:\ImagesOOM",
-                    FileName = "explorer.exe"
-                };
-                Process.Start(startInfo);
+                    image.images.Remove(item.Key[i]);
+                    pictureBox1.Image = null;
+                }
+                else
+                {
+                    Bitmap i1 = new Bitmap(item.Value);
+                    Image img1 = Image.FromFile(item.Key);
+                    Bitmap i2 = new Bitmap(img1);
+                    if (!compareImages(i1, i2))
+                    {
+                        image.images.Remove(item.Key);
+                        image.images.Add(item.Key, img1);
+                        if (FileExist(PrvaSlika)
+                        pictureBox1.Image = null;
+                        pictureBox2.Image = image.getImage2(pictureBox2);
+                        pictureBox3.Image = image.getImage2(pictureBox3);
+                        pictureBox4.Image = image.getImage2(pictureBox4);
+                        pictureBox5.Image = image.getImage2(pictureBox5);
+                        pictureBox6.Image = image.getImage2(pictureBox6);
+                    }
+
+                }
             }
-            else
+        }
+        private bool compareImages(Bitmap i1, Bitmap i2)
+        {
+            if (i1.Size != i2.Size)
+                return false;
+            for (int y = 0; y < i1.Height; y++)
             {
-                MessageBox.Show(string.Format("{0} directory does not exist!", @"D:\ImagesOOM"));
+                for (int x = 0; x < i1.Width; x++)
+                {
+                    Color pixel1 = i1.GetPixel(x,y);
+                    Color pixel2 = i2.GetPixel(x, y);
+                    if (pixel1 != pixel2)
+                        return false;
+                }
+               
             }
+            return true;
         }
     }
 }
