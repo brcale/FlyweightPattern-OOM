@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace FlyweightPattern_OOM
@@ -27,7 +28,7 @@ namespace FlyweightPattern_OOM
         public void Refresh()
         {
             short i = 0;
-            foreach (var key in images.Keys)
+            foreach (var key in images.Keys.ToList())
             {
                 if (!File.Exists(key))
                 {

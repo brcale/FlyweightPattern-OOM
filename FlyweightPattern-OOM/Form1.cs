@@ -117,15 +117,23 @@ namespace FlyweightPattern_OOM
         {
             //clear button
             pictureBox1.Image = null;
+            pictureBox1.Key = null;
             pictureBox2.Image = null;
+            pictureBox2.Key = null;
             pictureBox3.Image = null;
+            pictureBox3.Key = null;
             pictureBox4.Image = null;
+            pictureBox4.Key = null;
             pictureBox5.Image = null;
+            pictureBox5.Key = null;
             pictureBox6.Image = null;
+            pictureBox6.Key = null;
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+            //refresh button
+            Cursor.Current = Cursors.WaitCursor;
             imageMap.Refresh();
             foreach (Control control in Controls)
             {
@@ -135,6 +143,7 @@ namespace FlyweightPattern_OOM
                     pictureBox.Image = imageMap.GetImage(pictureBox.Key);
                 }
             }
+            Cursor.Current = Cursors.Default;
         }
     }
 }
