@@ -17,7 +17,7 @@ namespace FlyweightPattern_OOM
         Image imgfile;
         string directoryName;
         int flag=0;
-        public Image getImage2(PictureBox picture)
+        public Image getImage2(PictureBox picture, bool deleted=false)
         {
             Image value = null;
             OpenFileDialog f = new OpenFileDialog();
@@ -37,6 +37,10 @@ namespace FlyweightPattern_OOM
                         return value;
                     }
                 }
+                if (deleted)
+                {
+                    return null;
+                }
                 if (flag == 0)
                 {
                     //value = imgfile;
@@ -52,5 +56,6 @@ namespace FlyweightPattern_OOM
             return value;
 
         }
+
     }
 }

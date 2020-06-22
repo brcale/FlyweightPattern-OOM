@@ -22,26 +22,26 @@ namespace FlyweightPattern_OOM
             InitializeComponent();
         }
 
-        private void getImage(short id)
+        private void getImage(short id, bool deleted=false)
         {
             switch (id) {
                 case 1:
-                pictureBox1.Image = image.getImage2(pictureBox1);
+                pictureBox1.Image = image.getImage2(pictureBox1,deleted);
                     break;
                 case 2:
-                pictureBox2.Image = image.getImage2(pictureBox2);
+                pictureBox2.Image = image.getImage2(pictureBox2,deleted);
                     break;
                 case 3:
-                    pictureBox3.Image = image.getImage2(pictureBox3);
+                    pictureBox3.Image = image.getImage2(pictureBox3,deleted);
                     break;
                 case 4:
-                    pictureBox4.Image = image.getImage2(pictureBox4);
+                    pictureBox4.Image = image.getImage2(pictureBox4,deleted);
                     break;
                 case 5:
-                    pictureBox5.Image = image.getImage2(pictureBox5);
+                    pictureBox5.Image = image.getImage2(pictureBox5, deleted);
                     break;
                 case 6:
-                    pictureBox6.Image = image.getImage2(pictureBox6);
+                    pictureBox6.Image = image.getImage2(pictureBox6,deleted);
                     break;
 
             }
@@ -123,12 +123,14 @@ namespace FlyweightPattern_OOM
         private void button7_Click(object sender, EventArgs e)
         {
             //refresh button
+            short i = 0;
             foreach (var item in image.images)
             {
                 if (!File.Exists(item.Key))
                 {
-                    image.images.Remove(item.Key[i]);
-                    pictureBox1.Image = null;
+                    image.images.Remove(item.Key);
+                    getImage(i, true);
+
                 }
                 else
                 {
@@ -139,16 +141,11 @@ namespace FlyweightPattern_OOM
                     {
                         image.images.Remove(item.Key);
                         image.images.Add(item.Key, img1);
-                        if (FileExist(PrvaSlika)
-                        pictureBox1.Image = null;
-                        pictureBox2.Image = image.getImage2(pictureBox2);
-                        pictureBox3.Image = image.getImage2(pictureBox3);
-                        pictureBox4.Image = image.getImage2(pictureBox4);
-                        pictureBox5.Image = image.getImage2(pictureBox5);
-                        pictureBox6.Image = image.getImage2(pictureBox6);
+                        refresh();
                     }
 
                 }
+                i++;
             }
         }
         private bool compareImages(Bitmap i1, Bitmap i2)
@@ -167,6 +164,17 @@ namespace FlyweightPattern_OOM
                
             }
             return true;
+        }
+        public void refresh()
+        {
+            int i = 0;
+            foreach(var item in image.images)
+            {
+                PictureBox[] boxes = { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6 };
+                boxes[i].Image = item.Value;
+                i++;
+            }
+
         }
     }
 }
