@@ -24,7 +24,7 @@ namespace FlyweightPattern_OOM
             f.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
             if (f.ShowDialog() == DialogResult.OK)
             {
-                imgfile = Image.FromFile(f.FileName);
+                value = Image.FromFile(f.FileName);
                 iName = f.FileName;
                 for (int i = 0; i < images.Count; i++)
                 {
@@ -37,7 +37,7 @@ namespace FlyweightPattern_OOM
                 }
                 if (flag == 0)
                 {
-                    value = imgfile;
+                    //value = imgfile;
                     images.Add(iName, value);
                     return value;
                 }
