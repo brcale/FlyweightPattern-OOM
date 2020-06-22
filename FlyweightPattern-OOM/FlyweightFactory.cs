@@ -15,28 +15,35 @@ namespace FlyweightPattern_OOM
     {
         Dictionary<string, Image> images = new Dictionary<string, Image>();
         Image imgfile;
+        string iName;
+        int flag=0;
         public Image getImage2(PictureBox picture)
         {
+            Image value = null;
             OpenFileDialog f = new OpenFileDialog();
             f.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
             if (f.ShowDialog() == DialogResult.OK)
             {
                 imgfile = Image.FromFile(f.FileName);
-                string iName = f.FileName;
-                try
+                iName = f.FileName;
+                for (int i = 0; i < images.Count; i++)
                 {
-                    File.Copy(iName, Path.Combine(@"D:\ImagesOOM", Path.GetFileName(iName)));
+                    if (images.ContainsKey(iName))
+                    {
+                        flag = 1;
+                        value = images[iName];
+                        return value;
+                    }
                 }
-                catch (Exception)
+                if (flag == 0)
                 {
-                    MessageBox.Show("Picture already exists in internal memory!");
+                    value = imgfile;
+                    images.Add(iName, value);
+                    return value;
                 }
-                return imgfile;
             }
-            else
-            {
-                return null;
-            }
+            //ovaj return se nece nikada izvrsiti
+            return value;  
         }
     }
 }
