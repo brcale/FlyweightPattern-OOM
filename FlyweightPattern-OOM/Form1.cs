@@ -19,22 +19,22 @@ namespace FlyweightPattern_OOM
         {
             switch (id) {
                 case 1:
-                pictureBox1.Image = image.getImage2(pictureBox1,deleted);
+                pictureBox1.Image = image.GetImage(pictureBox1,deleted);
                     break;
                 case 2:
-                pictureBox2.Image = image.getImage2(pictureBox2,deleted);
+                pictureBox2.Image = image.GetImage(pictureBox2,deleted);
                     break;
                 case 3:
-                    pictureBox3.Image = image.getImage2(pictureBox3,deleted);
+                    pictureBox3.Image = image.GetImage(pictureBox3,deleted);
                     break;
                 case 4:
-                    pictureBox4.Image = image.getImage2(pictureBox4,deleted);
+                    pictureBox4.Image = image.GetImage(pictureBox4,deleted);
                     break;
                 case 5:
-                    pictureBox5.Image = image.getImage2(pictureBox5, deleted);
+                    pictureBox5.Image = image.GetImage(pictureBox5, deleted);
                     break;
                 case 6:
-                    pictureBox6.Image = image.getImage2(pictureBox6,deleted);
+                    pictureBox6.Image = image.GetImage(pictureBox6,deleted);
                     break;
 
             }

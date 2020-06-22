@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6C0AC046-A48A-4EF9-97C4-693AA6868699}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>FlyweightPattern_OOM</RootNamespace>
     <AssemblyName>FlyweightPattern-OOM</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
