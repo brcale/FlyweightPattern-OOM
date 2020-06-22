@@ -8,98 +8,109 @@ namespace FlyweightPattern_OOM
 {
     public partial class Form1 : Form
     {
-        FlyweightFactory image = new FlyweightFactory();
-        short id;
+        FlyweightFactory imageMap = new FlyweightFactory();
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void getImage(short id, bool deleted=false)
+        private void GetImage(short id)
         {
-            switch (id) {
-                case 1:
-                pictureBox1.Image = image.GetImage(pictureBox1,deleted);
-                    break;
-                case 2:
-                pictureBox2.Image = image.GetImage(pictureBox2,deleted);
-                    break;
-                case 3:
-                    pictureBox3.Image = image.GetImage(pictureBox3,deleted);
-                    break;
-                case 4:
-                    pictureBox4.Image = image.GetImage(pictureBox4,deleted);
-                    break;
-                case 5:
-                    pictureBox5.Image = image.GetImage(pictureBox5, deleted);
-                    break;
-                case 6:
-                    pictureBox6.Image = image.GetImage(pictureBox6,deleted);
-                    break;
-
+            OpenFileDialog f = new OpenFileDialog();
+            f.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                string directoryName = Path.GetFullPath(f.FileName);
+                switch (id)
+                {
+                    case 1:
+                        pictureBox1.Image = imageMap.GetImage(directoryName);
+                        pictureBox1.Key = directoryName;
+                        break;
+                    case 2:
+                        pictureBox2.Image = imageMap.GetImage(directoryName);
+                        pictureBox2.Key = directoryName;
+                        break;
+                    case 3:
+                        pictureBox3.Image = imageMap.GetImage(directoryName);
+                        pictureBox3.Key = directoryName;
+                        break;
+                    case 4:
+                        pictureBox4.Image = imageMap.GetImage(directoryName);
+                        pictureBox4.Key = directoryName;
+                        break;
+                    case 5:
+                        pictureBox5.Image = imageMap.GetImage(directoryName);
+                        pictureBox5.Key = directoryName;
+                        break;
+                    case 6:
+                        pictureBox6.Image = imageMap.GetImage(directoryName);
+                        pictureBox6.Key = directoryName;
+                        break;
+                }
             }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            getImage(1);
+            GetImage(1);
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            getImage(1);
+            GetImage(1);
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            getImage(2);
+            GetImage(2);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            getImage(2);
+            GetImage(2);
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            getImage(3);
+            GetImage(3);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            getImage(3);
+            GetImage(3);
 
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            getImage(4);
+            GetImage(4);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            getImage(4);
+            GetImage(4);
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            getImage(5);
+            GetImage(5);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            getImage(5);
+            GetImage(5);
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            getImage(6);
+            GetImage(6);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            getImage(6);
+            GetImage(6);
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -115,59 +126,15 @@ namespace FlyweightPattern_OOM
 
         private void button7_Click(object sender, EventArgs e)
         {
-            //refresh button
-            short i = 0;
-            foreach (var item in image.images)
+            imageMap.Refresh();
+            foreach (Control control in Controls)
             {
-                if (!File.Exists(item.Key))
+                KeyPictureBox pictureBox = control as KeyPictureBox;
+                if (pictureBox != null)
                 {
-                    image.images.Remove(item.Key);
-                    getImage(i, true);
-
+                    pictureBox.Image = imageMap.GetImage(pictureBox.Key);
                 }
-                else
-                {
-                    Bitmap i1 = new Bitmap(item.Value);
-                    Image img1 = Image.FromFile(item.Key);
-                    Bitmap i2 = new Bitmap(img1);
-                    if (!compareImages(i1, i2))
-                    {
-                        image.images.Remove(item.Key);
-                        image.images.Add(item.Key, img1);
-                        refresh();
-                    }
-
-                }
-                i++;
             }
-        }
-        private bool compareImages(Bitmap i1, Bitmap i2)
-        {
-            if (i1.Size != i2.Size)
-                return false;
-            for (int y = 0; y < i1.Height; y++)
-            {
-                for (int x = 0; x < i1.Width; x++)
-                {
-                    Color pixel1 = i1.GetPixel(x,y);
-                    Color pixel2 = i2.GetPixel(x, y);
-                    if (pixel1 != pixel2)
-                        return false;
-                }
-               
-            }
-            return true;
-        }
-        public void refresh()
-        {
-            int i = 0;
-            foreach(var item in image.images)
-            {
-                PictureBox[] boxes = { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6 };
-                boxes[i].Image = item.Value;
-                i++;
-            }
-
         }
     }
 }

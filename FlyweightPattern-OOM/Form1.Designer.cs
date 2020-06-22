@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new KeyPictureBox();
+            this.pictureBox2 = new KeyPictureBox();
+            this.pictureBox3 = new KeyPictureBox();
+            this.pictureBox4 = new KeyPictureBox();
+            this.pictureBox5 = new KeyPictureBox();
+            this.pictureBox6 = new KeyPictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -218,12 +218,12 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
+        private KeyPictureBox pictureBox1;
+        private KeyPictureBox pictureBox2;
+        private KeyPictureBox pictureBox3;
+        private KeyPictureBox pictureBox4;
+        private KeyPictureBox pictureBox5;
+        private KeyPictureBox pictureBox6;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
