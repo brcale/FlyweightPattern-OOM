@@ -17,7 +17,7 @@ namespace FlyweightPattern_OOM
         Image imgfile;
         string directoryName;
         int flag=0;
-        public Image getImage2(PictureBox picture, bool deleted=false)
+        public Image getImage2(PictureBox picture, bool deleted = false)
         {
             Image value = null;
             OpenFileDialog f = new OpenFileDialog();
@@ -45,7 +45,7 @@ namespace FlyweightPattern_OOM
                 {
                     //value = imgfile;
                     images.Add(directoryName, value);
-                    foreach(var item in images)
+                    foreach (var item in images)
                     {
                         Console.WriteLine(item.Key);
                     }
@@ -54,7 +54,6 @@ namespace FlyweightPattern_OOM
             }
             //ovaj return se nece nikada izvrsiti
             return value;
-
         }
 
     }
